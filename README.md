@@ -7,11 +7,11 @@
 Using npm:
 
 ```sh
-npm install --save column-email
+npm install --save @volenday/column-email
 ```
 
 or using yarn:
 
 ```sh
-yarn add column-email
+yarn add @volenday/column-email
 ```
