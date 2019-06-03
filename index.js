@@ -23,6 +23,7 @@ export default props => {
 						type="email"
 						class="form-control"
 						value={value}
+						onBlur={e => onChange({ Id: original.Id, [id]: e.target.value })}
 						onChange={e => onChangeText(index, id, e.target.value)}
 						onKeyDown={e => {
 							if (e.key === 'Enter') {
