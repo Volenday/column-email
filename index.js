@@ -1,4 +1,5 @@
 import React from 'react';
+import InputEmail from '@volenday/input-email';
 
 export default props => {
 	const {
@@ -19,24 +20,21 @@ export default props => {
 		Cell: ({ index, original, value }) => {
 			if (editable) {
 				return (
-					<input
-						type="email"
-						class="form-control"
-						value={value}
+					<InputEmail
+						id={id}
 						onBlur={e => onChange({ Id: original.Id, [id]: e.target.value })}
-						onChange={e => onChangeText(index, id, e.target.value)}
-						onKeyDown={e => {
-							if (e.key === 'Enter') {
-								onChange({ Id: original.Id, [id]: e.target.value });
-								e.target.blur();
-							}
-							return;
+						onChange={(field, value) => onChangeText(index, field, value)}
+						onPressEnter={e => {
+							onChange({ Id: original.Id, [id]: e.target.value });
+							e.target.blur();
 						}}
+						withLabel={false}
+						value={value}
 					/>
 				);
-			} else {
-				return <span>{value}</span>;
 			}
+
+			return <span>{value}</span>;
 		},
 		Filter: ({ filter, onChange }) => {
 			return (

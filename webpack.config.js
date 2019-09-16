@@ -53,6 +53,7 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	externals: {
+		'@volenday/input-email': 'commonjs @volenday/input-email',
 		react: 'commonjs react'
 	},
 	plugins: [
