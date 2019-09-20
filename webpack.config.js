@@ -54,6 +54,7 @@ module.exports = {
 	},
 	externals: {
 		'@volenday/input-email': 'commonjs @volenday/input-email',
+		formik: 'commonjs formik',
 		react: 'commonjs react'
 	},
 	plugins: [
