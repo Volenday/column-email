@@ -1,5 +1,6 @@
 import React from 'react';
 import InputEmail from '@volenday/input-email';
+import { Formik } from 'formik';
 
 export default props => {
 	const {
@@ -17,19 +18,28 @@ export default props => {
 		...defaultProps,
 		style: { ...style, display: 'flex', alignItems: 'center' },
 		headerStyle: { ...headerStyle, display: 'flex', alignItems: 'center' },
-		Cell: ({ index, original, value }) => {
+		Cell: ({ original, value }) => {
 			if (editable) {
 				return (
-					<InputEmail
-						id={id}
-						onBlur={e => onChange({ Id: original.Id, [id]: e.target.value })}
-						onChange={(field, value) => onChangeText(index, field, value)}
-						onPressEnter={e => {
-							onChange({ Id: original.Id, [id]: e.target.value });
-							e.target.blur();
-						}}
-						withLabel={false}
-						value={value}
+					<Formik
+						enableReinitialize={true}
+						initialValues={{ [id]: value }}
+						onSubmit={values => onChange({ ...values, Id: original.Id })}
+						validateOnBlur={false}
+						validateOnChange={false}
+						render={({ handleChange, submitForm, values }) => (
+							<InputEmail
+								id={id}
+								onBlur={submitForm}
+								onChange={handleChange}
+								onPressEnter={e => {
+									submitForm(e);
+									e.target.blur();
+								}}
+								withLabel={false}
+								value={values[id]}
+							/>
+						)}
 					/>
 				);
 			}
