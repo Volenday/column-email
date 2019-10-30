@@ -19,6 +19,8 @@ export default props => {
 		style: { ...style, display: 'flex', alignItems: 'center' },
 		headerStyle: { ...headerStyle, display: 'flex', alignItems: 'center' },
 		Cell: ({ original, value }) => {
+			if (typeof value == 'undefined') return null;
+
 			if (editable) {
 				return (
 					<Formik
@@ -26,8 +28,8 @@ export default props => {
 						initialValues={{ [id]: value }}
 						onSubmit={values => onChange({ ...values, Id: original.Id })}
 						validateOnBlur={false}
-						validateOnChange={false}
-						render={({ handleChange, submitForm, values }) => (
+						validateOnChange={false}>
+						{({ handleChange, submitForm, values }) => (
 							<InputEmail
 								id={id}
 								onBlur={submitForm}
@@ -40,7 +42,7 @@ export default props => {
 								value={values[id]}
 							/>
 						)}
-					/>
+					</Formik>
 				);
 			}
 
@@ -53,8 +55,8 @@ export default props => {
 					initialValues={{ filter: filter ? filter.value : '' }}
 					onSubmit={values => onChange(values.filter)}
 					validateOnBlur={false}
-					validateOnChange={false}
-					render={({ handleChange, submitForm, values }) => (
+					validateOnChange={false}>
+					{({ handleChange, submitForm, values }) => (
 						<InputEmail
 							id="filter"
 							onBlur={submitForm}
@@ -68,7 +70,7 @@ export default props => {
 							value={values.filter}
 						/>
 					)}
-				/>
+				</Formik>
 			);
 		}
 	};
