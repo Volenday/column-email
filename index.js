@@ -2,18 +2,7 @@ import React from 'react';
 import InputEmail from '@volenday/input-email';
 import { Formik } from 'formik';
 
-export default props => {
-	const {
-		editable = false,
-		format = [],
-		headerStyle = {},
-		id,
-		onChange,
-		onChangeText,
-		style = {},
-		...defaultProps
-	} = props;
-
+export default ({ editable = false, format = [], headerStyle = {}, id, onChange, style = {}, ...defaultProps }) => {
 	return {
 		...defaultProps,
 		style: { ...style, display: 'flex', alignItems: 'center' },
@@ -49,6 +38,8 @@ export default props => {
 			return <span>{value}</span>;
 		},
 		Filter: ({ filter, onChange }) => {
+			let timeout = null;
+
 			return (
 				<Formik
 					enableReinitialize={true}
@@ -59,10 +50,14 @@ export default props => {
 					{({ handleChange, submitForm, values }) => (
 						<InputEmail
 							id="filter"
-							onBlur={submitForm}
 							onChange={e => {
 								handleChange(e);
-								if (values.filter != '' && e.target.value == '') submitForm(e);
+								if (values.filter != '' && e.target.value == '') {
+									submitForm(e);
+								} else {
+									timeout && clearTimeout(timeout);
+									timeout = setTimeout(() => submitForm(e), 300);
+								}
 							}}
 							onPressEnter={submitForm}
 							placeholder="Search..."

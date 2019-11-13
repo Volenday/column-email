@@ -1,6 +1,6 @@
 {
 	"name": "@volenday/column-email",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"private": false,
 	"license": "MIT",
 	"author": "Jerome Miranda <jerome.m.miranda@gmail.com>",
@@ -16,19 +16,19 @@
 		"react": "~16.9.0"
 	},
 	"dependencies": {
-		"@volenday/input-email": "^0.1.9",
-		"formik": "^2.0.3",
+		"@volenday/input-email": "^0.1.10",
+		"formik": "^2.0.4",
 		"react": "^16.11.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.6.4",
-		"@babel/plugin-proposal-class-properties": "~7.5.5",
-		"@babel/plugin-proposal-decorators": "~7.6.0",
+		"@babel/core": "^7.7.2",
+		"@babel/plugin-proposal-class-properties": "^7.7.0",
+		"@babel/plugin-proposal-decorators": "^7.7.0",
 		"@babel/plugin-proposal-do-expressions": "~7.6.0",
 		"@babel/plugin-proposal-export-default-from": "~7.5.2",
 		"@babel/plugin-proposal-export-namespace-from": "~7.5.2",
 		"@babel/plugin-proposal-function-bind": "~7.2.0",
-		"@babel/plugin-proposal-function-sent": "~7.5.0",
+		"@babel/plugin-proposal-function-sent": "^7.7.0",
 		"@babel/plugin-proposal-json-strings": "~7.2.0",
 		"@babel/plugin-proposal-logical-assignment-operators": "~7.2.0",
 		"@babel/plugin-proposal-nullish-coalescing-operator": "~7.4.4",
@@ -38,19 +38,19 @@
 		"@babel/plugin-proposal-throw-expressions": "~7.2.0",
 		"@babel/plugin-syntax-dynamic-import": "~7.2.0",
 		"@babel/plugin-syntax-import-meta": "~7.2.0",
-		"@babel/plugin-transform-async-to-generator": "~7.5.0",
-		"@babel/preset-env": "^7.6.3",
-		"@babel/preset-react": "^7.6.3",
-		"@babel/runtime": "^7.6.3",
+		"@babel/plugin-transform-async-to-generator": "^7.7.0",
+		"@babel/preset-env": "^7.7.1",
+		"@babel/preset-react": "^7.7.0",
+		"@babel/runtime": "^7.7.2",
 		"babel-loader": "~8.0.6",
 		"babel-plugin-react-html-attrs": "^2.1.0",
-		"core-js": "^3.3.5",
+		"core-js": "^3.4.1",
 		"css-loader": "~3.2.0",
 		"file-loader": "~4.2.0",
 		"node-sass": "^4.13.0",
 		"sass-loader": "~8.0.0",
 		"style-loader": "~1.0.0",
 		"webpack": "^4.41.2",
-		"webpack-cli": "~3.3.9"
+		"webpack-cli": "^3.3.10"
 	}
 }
