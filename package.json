@@ -1,20 +1,15 @@
 {
 	"name": "@volenday/column-email",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"private": false,
 	"license": "MIT",
-	"author": "Jerome Miranda <jerome.m.miranda@gmail.com>",
+	"author": "Volenday <developers@volenday.com>",
 	"scripts": {
 		"dev": "webpack --watch --progress",
 		"build": "webpack --progress -p",
 		"prepublishOnly": "webpack --progress -p"
 	},
 	"main": "dist/index.min.js",
-	"peerDependencies": {
-		"@volenday/input-email": "~0.1.8",
-		"formik": "~1.5.8",
-		"react": "~16.9.0"
-	},
 	"dependencies": {
 		"@volenday/input-email": "^0.1.10",
 		"formik": "^2.0.4",
