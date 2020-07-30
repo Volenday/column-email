@@ -2,12 +2,10 @@ import React from 'react';
 import InputEmail from '@volenday/input-email';
 import { Formik } from 'formik';
 
-export default ({ editable = false, format = [], headerStyle = {}, id, onChange, style = {}, ...defaultProps }) => {
+export default ({ editable = false, format = [], id, onChange, ...defaultProps }) => {
 	return {
 		...defaultProps,
-		style: { ...style, display: 'flex', alignItems: 'center' },
-		headerStyle: { ...headerStyle, display: 'flex', alignItems: 'center' },
-		Cell: ({ original, value }) => {
+		Cell: ({ row, value }) => {
 			if (typeof value == 'undefined') return null;
 
 			if (editable) {
@@ -15,7 +13,7 @@ export default ({ editable = false, format = [], headerStyle = {}, id, onChange,
 					<Formik
 						enableReinitialize={true}
 						initialValues={{ [id]: value }}
-						onSubmit={values => onChange({ ...values, Id: original.Id })}
+						onSubmit={values => onChange({ ...values, Id: row.Id })}
 						validateOnBlur={false}
 						validateOnChange={false}>
 						{({ handleChange, submitForm, values }) => (
@@ -37,14 +35,14 @@ export default ({ editable = false, format = [], headerStyle = {}, id, onChange,
 
 			return <span>{value}</span>;
 		},
-		Filter: ({ filter, onChange }) => {
+		Filter: ({ column: { filterValue, setFilter } }) => {
 			let timeout = null;
 
 			return (
 				<Formik
 					enableReinitialize={true}
-					initialValues={{ filter: filter ? filter.value : '' }}
-					onSubmit={values => onChange(values.filter)}
+					initialValues={{ filter: filterValue ? filterValue : '' }}
+					onSubmit={values => setFilter(values.filter)}
 					validateOnBlur={false}
 					validateOnChange={false}>
 					{({ handleChange, submitForm, values }) => (
