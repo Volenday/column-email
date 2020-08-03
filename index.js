@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 export default ({ editable = false, format = [], id, onChange, ...defaultProps }) => {
 	return {
 		...defaultProps,
-		Cell: ({ row, value }) => {
+		Cell: ({ row: { original }, value }) => {
 			if (typeof value == 'undefined') return null;
 
 			if (editable) {
@@ -13,7 +13,7 @@ export default ({ editable = false, format = [], id, onChange, ...defaultProps }
 					<Formik
 						enableReinitialize={true}
 						initialValues={{ [id]: value }}
-						onSubmit={values => onChange({ ...values, Id: row.Id })}
+						onSubmit={values => onChange({ ...values, Id: original.Id })}
 						validateOnBlur={false}
 						validateOnChange={false}>
 						{({ handleChange, submitForm, values }) => (
