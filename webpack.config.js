@@ -54,9 +54,10 @@ module.exports = {
 		libraryTarget: 'commonjs2'
 	},
 	externals: {
+		antd: 'antd',
 		'@volenday/input-email': '@volenday/input-email',
-		formik: 'formik',
-		react: 'react'
+		react: 'react',
+		'react-hook-form': 'react-hook-form'
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(),
