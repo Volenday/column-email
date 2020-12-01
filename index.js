@@ -1,21 +1,23 @@
 import React, { memo, Suspense, useRef } from 'react';
-import InputEmail from '@volenday/input-email';
-import { Controller, useForm } from 'react-hook-form';
 import { Skeleton } from 'antd';
+
+const browser = typeof process.browser !== 'undefined' ? process.browser : true;
 
 export default ({ editable = false, format = [], id, onChange, ...defaultProps }) => {
 	return {
 		...defaultProps,
-		Cell: props => (
-			<Suspense fallback={<Skeleton active={true} paragraph={null} />}>
-				<Cell {...props} other={{ editable, id, onChange, withLabel: false }} />
-			</Suspense>
-		),
-		Filter: props => (
-			<Suspense fallback={<Skeleton active={true} paragraph={null} />}>
-				<Filter {...props} />
-			</Suspense>
-		)
+		Cell: props =>
+			browser ? (
+				<Suspense fallback={<Skeleton active={true} paragraph={null} />}>
+					<Cell {...props} other={{ editable, id, onChange, withLabel: false }} />
+				</Suspense>
+			) : null,
+		Filter: props =>
+			browser ? (
+				<Suspense fallback={<Skeleton active={true} paragraph={null} />}>
+					<Filter {...props} />
+				</Suspense>
+			) : null
 	};
 };
 
@@ -23,6 +25,8 @@ const Cell = memo(({ other: { editable, id, onChange, withLabel }, row: { origin
 	if (typeof value == 'undefined') return null;
 
 	if (editable) {
+		const InputEmail = require('@volenday/input-email').default;
+		const { Controller, useForm } = require('react-hook-form');
 		const formRef = useRef();
 		const originalValue = value;
 		const { control, handleSubmit } = useForm({ defaultValues: { [id]: value } });
@@ -56,6 +60,8 @@ const Cell = memo(({ other: { editable, id, onChange, withLabel }, row: { origin
 });
 
 const Filter = memo(({ column: { filterValue, setFilter } }) => {
+	const InputEmail = require('@volenday/input-email').default;
+	const { Controller, useForm } = require('react-hook-form');
 	let timeout = null;
 
 	const formRef = useRef();
